@@ -1,4 +1,4 @@
-# PROJECT.md（Antigravityが必ず読むプロジェクトの中核）
+# Frozen（Antigravityが必ず読むプロジェクトの中核）
 
 ## Core Topics（常に先頭に来る目次）
 - このプロジェクトの目的（簡潔）
@@ -9,7 +9,7 @@
 - フォルダ構成の大枠
 - 実装方針の大きなルール
 - **AIエージェント（Gemini / Antigravity / GPT）は、このドキュメントを最優先で参照すること**
-- **ARCHITECTURE.md を必ず参照し、PROJECT.md と整合性を保ちながら実装・修正すること**
+- **ARCHITECTURE.md を必ず参照し、Frozen と整合性を保ちながら実装・修正すること**
 
 
 
@@ -23,19 +23,13 @@
 
 ### 3. 使用する技術
 * **ホスティング & UI:** Cloudflare Pages (フロントエンド)
-* **動的処理 & API:** Cloudflare Workers (認証、コンテンツ出し分けロジック)
-* **データベース:** Cloudflare D1 (顧客データ、コンテンツメタデータ管理)
 * **ストレージ:** Cloudflare R2 (画像ファイル、透かしPNGの保存)
-* **認証:** X (旧Twitter) Oauth 認証 (後回し)
 * **開発環境:** Antigravity (メインIDE)、GitHub Actions (デプロイ自動化)
 
 ### 4. 設計原則
 * **費用効率:** 非課金ユーザーのアクセスでは、Cloudflare Workers/D1などの**従量課金リソースを一切使用しない**設計を徹底する（R2/Pagesの静的配信に限定）。
 * **スケーラビリティ:** Cloudflareのサーバーレスアーキテクチャを活用し、アクセス急増に耐えられる設計とする。
 * **モジュール化:** UI (Pages) と ロジック (Workers) を完全に分離し、開発と保守を容易にする。
-
-### 5. 依存している仕様書
-* ARCHITECTURE.md (別途、データフローや API 定義を詳細に記載する)
 
 ### 6. フォルダ構成の大枠
 * `/pages` または `/src`: Next.js/React ベースの UI コード（Pages用）

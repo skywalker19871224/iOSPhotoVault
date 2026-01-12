@@ -1,3 +1,5 @@
 [00:15:06.584] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/M1/AIProjects/iOSPhotoVault/src/app'
 [00:15:06.589] Server  ERROR    ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir '/Users/M1/AIProjects/iOSPhotoVault/src/app'
 [00:15:06.591] Server  ERROR    ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir '/Users/M1/AIProjects/iOSPhotoVault/src/app'
+[02:30:02.669] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/M1/AIProjects/iOSPhotoVault/src/app'
+[02:30:02.670] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/M1/AIProjects/iOSPhotoVault/src/app'
