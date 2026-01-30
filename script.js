@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const padNumber = (num) => String(num).padStart(3, '0');
 
     // Load Footer Content from Markdown
-    async function loadFooter() {
+    async function loadFooter(filename = './footer-p-01.md') {
         try {
-            const response = await fetch('./footer-content.md');
+            const response = await fetch(filename);
             if (response.ok) {
                 const text = await response.text();
                 // Basic MD conversion: replace newlines with <br>
@@ -261,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function performUnlock() {
         isUnlocked = true;
+        loadFooter('./footer-p-02.md'); // Switch to post-unlock message
         const items = document.querySelectorAll('.photo-item');
         items.forEach((item, index) => {
             setTimeout(() => {
