@@ -17,8 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordError = document.getElementById('password-error');
     const modalContent = modal.querySelector('.modal-content');
     const footerText = document.getElementById('footer-text');
+    const infoFooter = document.getElementById('info-footer');
     const privacyOverlay = document.getElementById('privacy-overlay');
     const watermarkContainer = document.getElementById('watermark-container');
+
+    let footerAutoScrollActive = true;
+    let scrollRequest;
 
     const totalPhotos = 75;
     let isUnlocked = false;
@@ -85,10 +89,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 const text = await response.text();
                 // Basic MD conversion: replace newlines with <br>
                 footerText.innerHTML = text.replace(/\n/g, '<br>');
+
+                // Start Movie Credit Roll Effect
+                initFooterAutoScroll();
             }
         } catch (err) {
             console.error('Failed to load footer context:', err);
         }
+    }
+
+    function initFooterAutoScroll() {
+        // Reset state
+        footerAutoScrollActive = true;
+        infoFooter.scrollTop = 0;
+        if (scrollRequest) cancelAnimationFrame(scrollRequest);
+
+        const scrollStep = () => {
+            if (!footerAutoScrollActive) return;
+
+            infoFooter.scrollTop += 0.4; // Controlled speed for elegance
+
+            // If reached bottom, stop
+            if (infoFooter.scrollTop + infoFooter.clientHeight >= infoFooter.scrollHeight - 2) {
+                footerAutoScrollActive = false;
+                return;
+            }
+
+            scrollRequest = requestAnimationFrame(scrollStep);
+        };
+
+        // Delay start slightly for better feel
+        setTimeout(() => {
+            scrollRequest = requestAnimationFrame(scrollStep);
+        }, 1000);
+
+        // Stop on interaction
+        const stopScroll = () => {
+            footerAutoScrollActive = false;
+            if (scrollRequest) cancelAnimationFrame(scrollRequest);
+        };
+
+        infoFooter.addEventListener('touchstart', stopScroll, { passive: true });
+        infoFooter.addEventListener('mousedown', stopScroll);
+        infoFooter.addEventListener('wheel', stopScroll, { passive: true });
     }
     loadFooter();
 

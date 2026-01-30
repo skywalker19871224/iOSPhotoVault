@@ -262,21 +262,24 @@ img,
     left: 0;
     width: 100%;
     max-height: 38vh;
-    /* Limit height to 38% of viewport */
     overflow-y: auto;
-    /* Enable vertical scroll if content is long */
-    padding: 24px 24px calc(24px + var(--safe-area-bottom));
+    padding: 0 24px calc(24px + var(--safe-area-bottom));
     background: rgba(0, 0, 0, 0.45);
-    /* More transparent glass */
     backdrop-filter: blur(30px) saturate(160%);
     -webkit-backdrop-filter: blur(30px) saturate(160%);
     border-top: 0.5px solid rgba(224, 202, 130, 0.15);
     display: flex;
     flex-direction: column;
-    /* Changed to column for better scrolling flow */
     align-items: center;
     z-index: 1000;
     transition: max-height 0.4s var(--ease-ios);
+    scrollbar-width: none;
+    /* Hide scrollbar Hide scrollbar for Firefox */
+}
+
+.info-footer::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar for Chrome/Safari */
 }
 
 /* Drag-handle style indicator for the drawer-like feel */
@@ -294,14 +297,11 @@ img,
     color: var(--text-primary);
     font-size: 13px;
     line-height: 1.8;
-    /* Increased line height for elegance */
     text-align: center;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    width: 100%;
-    max-width: 500px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
-    /* Edge out over images */
+    padding-top: 15vh;
+    /* Gap for credit roll */
+    padding-bottom: 10vh;
+    /* Gap for end */
 }
 
 /* Scrollbar Hiding */
