@@ -261,20 +261,33 @@ img,
     bottom: 0;
     left: 0;
     width: 100%;
-    /* No fixed height, let it grow with content but keep it airy */
-    padding-top: 20px;
-    padding-bottom: calc(24px + var(--safe-area-bottom));
-    background: rgba(0, 0, 0, 0.75);
-    /* Slightly darker for readability */
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border-top: 0.5px solid rgba(224, 202, 130, 0.2);
+    max-height: 38vh;
+    /* Limit height to 38% of viewport */
+    overflow-y: auto;
+    /* Enable vertical scroll if content is long */
+    padding: 24px 24px calc(24px + var(--safe-area-bottom));
+    background: rgba(0, 0, 0, 0.45);
+    /* More transparent glass */
+    backdrop-filter: blur(30px) saturate(160%);
+    -webkit-backdrop-filter: blur(30px) saturate(160%);
+    border-top: 0.5px solid rgba(224, 202, 130, 0.15);
     display: flex;
+    flex-direction: column;
+    /* Changed to column for better scrolling flow */
     align-items: center;
-    justify-content: center;
-    padding-left: 24px;
-    padding-right: 24px;
     z-index: 1000;
+    transition: max-height 0.4s var(--ease-ios);
+}
+
+/* Drag-handle style indicator for the drawer-like feel */
+.info-footer::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 32px;
+    height: 4px;
+    background: rgba(224, 202, 130, 0.3);
+    border-radius: 2px;
 }
 
 .footer-text-content {
