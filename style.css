@@ -300,8 +300,27 @@ img,
     text-align: center;
     padding-top: 15vh;
     /* Gap for credit roll */
-    padding-bottom: 10vh;
-    /* Gap for end */
+    padding-bottom: 2vh;
+    /* Reduced to bring big timer closer */
+}
+
+.footer-timer-large {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15vh;
+    margin-top: 30px;
+}
+
+.timer-big-value {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(36px, 10vw, 72px);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 20px rgba(224, 202, 130, 0.4);
+    font-variant-numeric: tabular-nums;
 }
 
 /* Scrollbar Hiding */

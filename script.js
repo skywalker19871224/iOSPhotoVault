@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const photoGrid = document.getElementById('photo-grid');
     const timerElement = document.getElementById('countdown-timer');
+    const timerElementBig = document.getElementById('countdown-timer-big');
     const viewer = document.getElementById('fullscreen-viewer');
     const viewerClose = document.getElementById('viewer-close');
     const viewerSlider = document.getElementById('viewer-slider');
@@ -162,8 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         const ms = Math.floor((diff % 1000) / 10); // Centiseconds
-
-        timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(ms).padStart(2, '0')}`;
+        const timerStr = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(ms).padStart(2, '0')}`;
+        timerElement.textContent = timerStr;
+        if (timerElementBig) timerElementBig.textContent = timerStr;
     }
     setInterval(updateCountdown, 10);
     updateCountdown();
