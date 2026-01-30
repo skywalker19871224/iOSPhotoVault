@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 1. Visibility & Blur Guard
+        // 1. Visibility & Blur Guard (Disabled)
+        /*
         const toggleOverlay = (active) => {
             if (active) privacyOverlay.classList.add('active');
             else privacyOverlay.classList.remove('active');
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Some browsers trigger blur on Control Center/Multitask
         window.addEventListener('blur', () => toggleOverlay(true));
         window.addEventListener('focus', () => toggleOverlay(false));
+        */
 
         // 2. Dynamic Watermark (Disabled for now per user request)
         /*
