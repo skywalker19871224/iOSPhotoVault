@@ -180,13 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             slide.appendChild(img);
 
-            // Add SAMPLE watermark to first image
-            if (index === 0) {
-                const watermark = document.createElement('div');
-                watermark.className = 'sample-watermark';
-                watermark.textContent = 'SAMPLE';
-                slide.appendChild(watermark);
-            }
+            // Add SAMPLE watermark to every image
+            const watermark = document.createElement('div');
+            watermark.className = 'sample-watermark';
+            watermark.textContent = 'SAMPLE';
+            slide.appendChild(watermark);
 
             viewerSlider.appendChild(slide);
         });
@@ -235,13 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
             photoItem.appendChild(photoImage);
             photoItem.appendChild(lockOverlay);
 
-            // Add SAMPLE watermark to first image
-            if (index === 0) {
-                const watermark = document.createElement('div');
-                watermark.className = 'sample-watermark';
-                watermark.textContent = 'SAMPLE';
-                photoItem.appendChild(watermark);
-            }
+            // Add SAMPLE watermark to every image
+            const watermark = document.createElement('div');
+            watermark.className = 'sample-watermark';
+            watermark.textContent = 'SAMPLE';
+            photoItem.appendChild(watermark);
 
             photoGrid.appendChild(photoItem);
         });
