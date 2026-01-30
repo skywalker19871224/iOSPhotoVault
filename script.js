@@ -11,10 +11,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordError = document.getElementById('password-error');
     const modalContent = modal.querySelector('.modal-content');
     const footerText = document.getElementById('footer-text');
+    const privacyOverlay = document.getElementById('privacy-overlay');
+    const watermarkContainer = document.getElementById('watermark-container');
 
     const totalPhotos = 75;
     let isUnlocked = false;
     let photoOrder = Array.from({ length: totalPhotos }, (_, i) => i + 1);
+
+    // Admin Check (Allow owner to skip protection)
+    const isAdmin = localStorage.getItem('admin_session') === 'true';
+
+    // Screenshot Guard Implementation
+    function initScreenshotGuard() {
+        if (isAdmin) {
+            console.log("Admin session detected. Guard disabled.");
+            return;
+        }
+
+        // 1. Visibility & Blur Guard
+        const toggleOverlay = (active) => {
+            if (active) privacyOverlay.classList.add('active');
+            else privacyOverlay.classList.remove('active');
+        };
+
+        window.addEventListener('visibilitychange', () => {
+            if (document.hidden) toggleOverlay(true);
+            else toggleOverlay(false);
+        });
+
+        // Some browsers trigger blur on Control Center/Multitask
+        window.addEventListener('blur', () => toggleOverlay(true));
+        window.addEventListener('focus', () => toggleOverlay(false));
+
+        // 2. Dynamic Watermark (Disabled for now per user request)
+        /*
+        watermarkContainer.style.display = 'block';
+        const watermarkText = "PREMIUM ALBUM • DO NOT COPY";
+
+        for (let i = 0; i < 5; i++) {
+            const el = document.createElement('div');
+            el.className = 'watermark-item';
+            el.textContent = watermarkText;
+            watermarkContainer.appendChild(el);
+
+            const move = () => {
+                const x = Math.random() * 80;
+                const y = Math.random() * 90;
+                el.style.left = x + '%';
+                el.style.top = y + '%';
+            };
+            move();
+            setInterval(move, 6000 + Math.random() * 2000);
+        }
+        */
+    }
+    initScreenshotGuard();
 
     const padNumber = (num) => String(num).padStart(3, '0');
 
@@ -24,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('./footer-content.md');
             if (response.ok) {
                 const text = await response.text();
+                // Basic MD conversion: replace newlines with <br>
                 footerText.innerHTML = text.replace(/\n/g, '<br>');
             }
         } catch (err) {
@@ -58,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hours = Math.floor(diff / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        const ms = Math.floor((diff % 1000) / 10);
+        const ms = Math.floor((diff % 1000) / 10); // Centiseconds
 
         timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(ms).padStart(2, '0')}`;
     }
