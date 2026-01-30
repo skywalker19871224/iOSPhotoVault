@@ -40,9 +40,15 @@ Chikaさんの特別予告アルバムを、iOSのような洗練されたUI/UX�
     *   「今夜0時解禁」のキャッチコピー入り。
     *   オーナー提供画像ベースの高級感ある告知カード。
 
+### 7. 特殊制御 (APP_CONFIG)
+チャットでの口頭指示により、サイトの機能を即座に切り替える「フィーチャー・フラグ」を導入しました。
+*   **指令: 「ビューアーをオフにして」** -> `enableFullscreenViewer: false` (巨大画像表示を無効化)
+*   **指令: 「ビューアーをオンにして」** -> `enableFullscreenViewer: true` (巨大画像表示を有効化)
+
 ## 技術スタック
 *   **Frontend**: Vanilla JS, CSS3, HTML5
 *   **Backend**: Cloudflare Pages Functions
 *   **Database**: Cloudflare KV (FROZEN_KV)
 *   **Generator**: Python (Pillow) for OGP Generation
-*   **Deployment**: Wrangler / Cloudflare Pages
+*   **Deployment**: Wrangler / Cloudflare Pages (Deploy-on-Push)
+*   **Feature Control**: APP_CONFIG (Feature Toggle system)

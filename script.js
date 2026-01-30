@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Feature Toggles (Chat-controllable)
     const APP_CONFIG = {
-        enableFullscreenViewer: true
+        enableFullscreenViewer: false
     };
 
     const photoGrid = document.getElementById('photo-grid');

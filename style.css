@@ -165,7 +165,7 @@ img,
     /* Large space at bottom to allow scrolling past footer info */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
+    gap: 0;
     width: 100%;
     background-color: #000;
 }
