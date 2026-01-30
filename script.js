@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Feature Toggles (Chat-controllable)
+    const APP_CONFIG = {
+        enableFullscreenViewer: true
+    };
+
     const photoGrid = document.getElementById('photo-grid');
     const timerElement = document.getElementById('countdown-timer');
     const viewer = document.getElementById('fullscreen-viewer');
@@ -222,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             photoItem.addEventListener('click', () => {
                 if (!isUnlocked) {
                     showModal();
-                } else {
+                } else if (APP_CONFIG.enableFullscreenViewer) {
                     openViewer(index);
                 }
             });
